@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-<title>Apophenia</title>
+<title>Mantas Lilis - Interaction designer</title>
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,19 +12,9 @@
 </head>
 <body>
 <canvas id="c"></canvas>
-<div id="messageStatus"></div>
-<div id="inputContainer">
-  <input type="text" id="bottomInput" placeholder="Type something..." />
-  <button id="submitButton" type="button">
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-      <path d="M12 19V5M5 12l7-7 7 7"/>
-    </svg>
-  </button>
-</div>
 
 <script src="background.js"></script>
 <script src="content.js"></script>
-<script src="input.js"></script>
 <script>
 (() => {
   // ---------- Config ----------
@@ -68,7 +58,6 @@
   // Initialize all modules
   initBackground(canvas, CFG);
   initContent(CFG, getCanvasContext());
-  initInput();
 
   // ---------- Main Animation Loop ----------
   function frame() {
