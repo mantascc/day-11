@@ -31,8 +31,8 @@ function loadPhrases() {
     .then(response => response.json())
     .then(data => {
       bodyTextPhrases = data.phrases;
-      // Reset typing state with random first phrase
-      typingState.currentPhraseIndex = Math.floor(Math.random() * bodyTextPhrases.length);
+      // Always start with the first phrase (index 0)
+      typingState.currentPhraseIndex = 0;
       typingState.targetText = bodyTextPhrases[typingState.currentPhraseIndex];
       typingState.currentText = '';
       typingState.isTyping = true;
@@ -74,8 +74,13 @@ function updateTypingEffect() {
       typingState.currentText = typingState.currentText.substring(0, typingState.currentText.length - 1);
       typingState.lastTypeTime = now;
     } else {
-      // Finished deleting, move to random phrase
-      typingState.currentPhraseIndex = Math.floor(Math.random() * bodyTextPhrases.length);
+      // Finished deleting, move to random phrase (but not the first one again)
+      let nextIndex;
+      do {
+        nextIndex = Math.floor(Math.random() * bodyTextPhrases.length);
+      } while (nextIndex === 0); // Avoid repeating the first phrase
+      
+      typingState.currentPhraseIndex = nextIndex;
       typingState.targetText = bodyTextPhrases[typingState.currentPhraseIndex];
       typingState.isTyping = true;
       typingState.charIndex = 0;
